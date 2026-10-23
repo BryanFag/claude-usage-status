@@ -1,0 +1,4 @@
+{
+  "description": "Mostra o uso do plano do Claude (sessão de 5 h e limite semanal) em barras de progresso na barra de status",
+  "command.refresh.title": "Claude Usage: Atualizar"
+}

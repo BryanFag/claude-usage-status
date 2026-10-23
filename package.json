@@ -1,8 +1,8 @@
 {
-  "name": "claude-usage-statusbar",
-  "displayName": "Claude Usage Status Bar",
-  "description": "Mostra o uso do plano do Claude (5 h e 7 dias) na barra de status",
-  "version": "0.0.5",
+  "name": "claude-status-usage",
+  "displayName": "Claude Usage Status (unofficial)",
+  "description": "%description%",
+  "version": "0.1.0",
   "publisher": "bryanfagundes",
   "license": "MIT",
   "repository": {
@@ -13,10 +13,29 @@
     "url": "https://github.com/BryanFag/claude-usage-status/issues"
   },
   "homepage": "https://github.com/BryanFag/claude-usage-status#readme",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#1E1E1E",
+    "theme": "dark"
+  },
+  "categories": [
+    "AI",
+    "Other"
+  ],
+  "keywords": [
+    "claude",
+    "claude code",
+    "usage",
+    "rate limit",
+    "quota",
+    "status bar",
+    "limits"
+  ],
   "engines": {
     "vscode": "^1.90.0"
   },
   "main": "./extension.js",
+  "l10n": "./l10n",
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -24,152 +43,152 @@
     "commands": [
       {
         "command": "claudeUsageStatusbar.refresh",
-        "title": "Claude Usage: Atualizar"
+        "title": "%command.refresh.title%"
       }
     ],
     "icons": {
       "claude-usage-bar-0": {
-        "description": "Barra de uso em 0%",
+        "description": "Usage bar at 0%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E000"
         }
       },
       "claude-usage-bar-5": {
-        "description": "Barra de uso em 5%",
+        "description": "Usage bar at 5%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E001"
         }
       },
       "claude-usage-bar-10": {
-        "description": "Barra de uso em 10%",
+        "description": "Usage bar at 10%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E002"
         }
       },
       "claude-usage-bar-15": {
-        "description": "Barra de uso em 15%",
+        "description": "Usage bar at 15%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E003"
         }
       },
       "claude-usage-bar-20": {
-        "description": "Barra de uso em 20%",
+        "description": "Usage bar at 20%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E004"
         }
       },
       "claude-usage-bar-25": {
-        "description": "Barra de uso em 25%",
+        "description": "Usage bar at 25%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E005"
         }
       },
       "claude-usage-bar-30": {
-        "description": "Barra de uso em 30%",
+        "description": "Usage bar at 30%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E006"
         }
       },
       "claude-usage-bar-35": {
-        "description": "Barra de uso em 35%",
+        "description": "Usage bar at 35%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E007"
         }
       },
       "claude-usage-bar-40": {
-        "description": "Barra de uso em 40%",
+        "description": "Usage bar at 40%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E008"
         }
       },
       "claude-usage-bar-45": {
-        "description": "Barra de uso em 45%",
+        "description": "Usage bar at 45%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E009"
         }
       },
       "claude-usage-bar-50": {
-        "description": "Barra de uso em 50%",
+        "description": "Usage bar at 50%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E00A"
         }
       },
       "claude-usage-bar-55": {
-        "description": "Barra de uso em 55%",
+        "description": "Usage bar at 55%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E00B"
         }
       },
       "claude-usage-bar-60": {
-        "description": "Barra de uso em 60%",
+        "description": "Usage bar at 60%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E00C"
         }
       },
       "claude-usage-bar-65": {
-        "description": "Barra de uso em 65%",
+        "description": "Usage bar at 65%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E00D"
         }
       },
       "claude-usage-bar-70": {
-        "description": "Barra de uso em 70%",
+        "description": "Usage bar at 70%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E00E"
         }
       },
       "claude-usage-bar-75": {
-        "description": "Barra de uso em 75%",
+        "description": "Usage bar at 75%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E00F"
         }
       },
       "claude-usage-bar-80": {
-        "description": "Barra de uso em 80%",
+        "description": "Usage bar at 80%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E010"
         }
       },
       "claude-usage-bar-85": {
-        "description": "Barra de uso em 85%",
+        "description": "Usage bar at 85%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E011"
         }
       },
       "claude-usage-bar-90": {
-        "description": "Barra de uso em 90%",
+        "description": "Usage bar at 90%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E012"
         }
       },
       "claude-usage-bar-95": {
-        "description": "Barra de uso em 95%",
+        "description": "Usage bar at 95%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E013"
         }
       },
       "claude-usage-bar-100": {
-        "description": "Barra de uso em 100%",
+        "description": "Usage bar at 100%",
         "default": {
           "fontPath": "./media/usage-bar.woff",
           "fontCharacter": "\\E014"

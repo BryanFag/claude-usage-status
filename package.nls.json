@@ -1,0 +1,4 @@
+{
+  "description": "Shows your Claude plan usage (5-hour session and weekly limits) as progress bars in the status bar",
+  "command.refresh.title": "Claude Usage: Refresh"
+}

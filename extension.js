@@ -22,8 +22,8 @@ const TOOLTIP_BLOCK = "█";
 const STATUS_BAR_ITEM_ID = "claudeUsageStatusbar.usage";
 const REFRESH_COMMAND = "claudeUsageStatusbar.refresh";
 const USAGE_WINDOWS = [
-  { key: "five_hour", shortLabel: "5h", label: "Sessão (5 h)" },
-  { key: "seven_day", shortLabel: "7d", label: "Semana (7 dias)" },
+  { key: "five_hour", shortLabel: "5h", label: () => vscode.l10n.t("Session (5h)") },
+  { key: "seven_day", shortLabel: "7d", label: () => vscode.l10n.t("Week (7 days)") },
 ];
 
 let statusBarItem;
@@ -34,10 +34,10 @@ function readAccessToken() {
   const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, "utf8"));
   const oauth = credentials.claudeAiOauth;
   if (!oauth || !oauth.accessToken) {
-    throw new Error("login do Claude não encontrado");
+    throw new Error(vscode.l10n.t("Claude login not found"));
   }
   if (oauth.expiresAt && oauth.expiresAt < Date.now()) {
-    throw new Error("login expirado; abra o Claude para renovar");
+    throw new Error(vscode.l10n.t("Login expired; open Claude to renew it"));
   }
   return oauth.accessToken;
 }
@@ -90,16 +90,16 @@ function formatTimeLeft(resetsAt) {
   const hours = Math.floor((remainingMs % DAY_MS) / HOUR_MS);
   const minutes = Math.floor((remainingMs % HOUR_MS) / MINUTE_MS);
   if (days > 0) {
-    return `${days}d ${hours}h`;
+    return vscode.l10n.t("{0}d {1}h", days, hours);
   }
   if (hours > 0) {
-    return `${hours}h ${minutes}min`;
+    return vscode.l10n.t("{0}h {1}min", hours, minutes);
   }
-  return `${minutes}min`;
+  return vscode.l10n.t("{0}min", minutes);
 }
 
 function formatResetClock(resetsAt) {
-  return new Date(resetsAt).toLocaleString("pt-BR", {
+  return new Date(resetsAt).toLocaleString(vscode.env.language, {
     weekday: "short",
     hour: "2-digit",
     minute: "2-digit",
@@ -108,31 +108,31 @@ function formatResetClock(resetsAt) {
 
 function formatReset(window) {
   if (!window || !window.resets_at) {
-    return "sem horário de reset";
+    return vscode.l10n.t("no reset time");
   }
-  return `zera em ${formatTimeLeft(window.resets_at)} · ${formatResetClock(window.resets_at)}`;
+  return vscode.l10n.t("resets in {0} · {1}", formatTimeLeft(window.resets_at), formatResetClock(window.resets_at));
 }
 
 function formatClock(date) {
-  return date.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  return date.toLocaleTimeString(vscode.env.language, { hour: "2-digit", minute: "2-digit" });
 }
 
 function buildTooltip(usage, staleReason) {
   const tooltip = new vscode.MarkdownString();
   tooltip.supportHtml = true;
   tooltip.supportThemeIcons = true;
-  tooltip.appendMarkdown(`<span style="color:${CLAUDE_ORANGE};">**${CLAUDE_MARK} Uso do Claude**</span>\n\n`);
+  tooltip.appendMarkdown(`<span style="color:${CLAUDE_ORANGE};">**${CLAUDE_MARK} ${vscode.l10n.t("Claude usage")}**</span>\n\n`);
   for (const usageWindow of USAGE_WINDOWS) {
     const window = usage[usageWindow.key];
-    tooltip.appendMarkdown(`**${usageWindow.label}** · ${formatPercent(window)}\n\n`);
+    tooltip.appendMarkdown(`**${usageWindow.label()}** · ${formatPercent(window)}\n\n`);
     tooltip.appendMarkdown(`${formatTooltipBar(window)}\n\n`);
     tooltip.appendMarkdown(`${formatReset(window)}\n\n`);
   }
   tooltip.appendMarkdown(`---\n\n`);
   if (staleReason) {
-    tooltip.appendMarkdown(`$(warning) Desatualizado: ${staleReason}\n\n`);
+    tooltip.appendMarkdown(`$(warning) ${vscode.l10n.t("Out of date: {0}", staleReason)}\n\n`);
   }
-  tooltip.appendMarkdown(`Atualizado às ${formatClock(lastUpdatedAt)} · clique para atualizar`);
+  tooltip.appendMarkdown(vscode.l10n.t("Updated at {0} · click to refresh", formatClock(lastUpdatedAt)));
   return tooltip;
 }
 
@@ -149,7 +149,7 @@ function renderError(message) {
     return;
   }
   statusBarItem.text = `${CLAUDE_MARK} Claude $(warning)`;
-  statusBarItem.tooltip = `Uso do Claude indisponível: ${message}`;
+  statusBarItem.tooltip = vscode.l10n.t("Claude usage unavailable: {0}", message);
 }
 
 async function refresh() {
@@ -164,7 +164,7 @@ async function refresh() {
 
 function activate(context) {
   statusBarItem = vscode.window.createStatusBarItem(STATUS_BAR_ITEM_ID, vscode.StatusBarAlignment.Right, 100);
-  statusBarItem.name = "Uso do Claude";
+  statusBarItem.name = vscode.l10n.t("Claude usage");
   statusBarItem.command = REFRESH_COMMAND;
   statusBarItem.color = CLAUDE_ORANGE;
   statusBarItem.text = `${CLAUDE_MARK} Claude…`;

@@ -110,7 +110,7 @@ def update_package_icons(percents):
     package = json.loads(PACKAGE_JSON_PATH.read_text(encoding="utf-8"))
     package.setdefault("contributes", {})["icons"] = {
         f"{ICON_PREFIX}{percent}": {
-            "description": f"Barra de uso em {percent}%",
+            "description": f"Usage bar at {percent}%",
             "default": {
                 "fontPath": FONT_PATH_IN_PACKAGE,
                 "fontCharacter": f"\\{FIRST_CODEPOINT + index:X}",

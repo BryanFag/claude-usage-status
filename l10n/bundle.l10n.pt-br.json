@@ -1,0 +1,15 @@
+{
+  "Session (5h)": "Sessão (5 h)",
+  "Week (7 days)": "Semana (7 dias)",
+  "Claude login not found": "Login do Claude não encontrado",
+  "Login expired; open Claude to renew it": "Login expirado; abra o Claude para renovar",
+  "{0}d {1}h": "{0}d {1}h",
+  "{0}h {1}min": "{0}h {1}min",
+  "{0}min": "{0}min",
+  "no reset time": "sem horário de reset",
+  "resets in {0} · {1}": "zera em {0} · {1}",
+  "Claude usage": "Uso do Claude",
+  "Out of date: {0}": "Desatualizado: {0}",
+  "Updated at {0} · click to refresh": "Atualizado às {0} · clique para atualizar",
+  "Claude usage unavailable: {0}": "Uso do Claude indisponível: {0}"
+}
